@@ -1,8 +1,8 @@
 {
-  "url": "",
+  "url": "https://mallorcafiestas.com/",
   "exit_domain": true,
   "exclude_domains": [],
-  "time_sleep": 2000,
+  "time_sleep": 0.2,
   "output": "links.l",
   "debug": true
 }
