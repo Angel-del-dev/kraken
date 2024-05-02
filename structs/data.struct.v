@@ -1,5 +1,7 @@
 module structs
 
+import time
+
 // Links
 pub struct Links {
 pub mut:
@@ -18,7 +20,7 @@ pub:
 	url string
 	exclude_domains []string
 	output string
-	time_sleep f32 = 5
+	time_sleep time.Duration
 	exit_domain bool
 	debug bool
 }

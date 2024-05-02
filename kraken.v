@@ -58,12 +58,9 @@ fn get_next_domain(mut links Links, active string) string {
 	return keys[c_index+1]
 }
 
-fn seconds_to_nano_milliseconds(seconds f32) f32 {
-	return seconds * 1_000
-}
-
 fn loop(configure Config, mut links Links, ac_domain string, index int) {
-	time.sleep(seconds_to_nano_milliseconds(configure.time_sleep))
+
+	time.sleep(configure.time_sleep.seconds() * time.second)
 
 	if index >= links.links[ac_domain].len || configure.exclude_domains.contains(ac_domain) {
 		if !configure.exit_domain { return }
