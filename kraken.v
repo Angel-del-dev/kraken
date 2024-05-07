@@ -19,7 +19,7 @@ fn get_links(mut links Links, url string, domain string) {
 	for a in a_tags {
 		link := a.attributes['href'].str()
 
-		if ['.', '#',''].contains(link) || !link.contains('://') { continue }
+		if ['.', '#',''].contains(link) { continue }
 		n_domain, new_url := format_url(domain, link)
 
 		if links.links[n_domain].contains(new_url) { continue }
@@ -79,6 +79,7 @@ fn loop(configure Config, mut links Links, ac_domain string, index int) {
 	url := ac_domain+links.links[ac_domain][index]
 	if configure.debug { print("$url\n") }
 	get_links(mut links, url, ac_domain)
+
 	loop(configure, mut links, ac_domain, index + 1)
 }
 
