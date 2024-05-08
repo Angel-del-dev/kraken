@@ -18,18 +18,28 @@ fn get_links(mut links Links, url string, domain string) {
 
 	for a in a_tags {
 		link := a.attributes['href'].str()
+		if link.replace(' ', '').len == 0 { continue }
+		if link.contains_any_substr(['#',' ', 'javascript']) { continue }
 
-		if ['.', '#',''].contains(link) { continue }
 		n_domain, new_url := format_url(domain, link)
 
-		if links.links[n_domain].contains(new_url) { continue }
-		links.links[n_domain] << new_url
-	}
+		if new_url.len >= 2 && new_url.substr(0, 2) == '//'{
+			new_domain := n_domain.split('://')[0]+'://'
 
+			if links.links[new_domain].contains(new_url) { continue }
+			links.links[new_domain] << new_url.substr(2, new_url.len - 1)
+
+		}else {
+			if links.links[n_domain].contains(new_url) { continue }
+			links.links[n_domain] << new_url
+		}
+
+	}
 }
 
 fn format_url(current_domain string, url string) (string, string) {
 	url_split := url.split('')
+
 	mut n_url := url.clone()
 	if url_split[0] == '.' {
 		n_url = url.substr(1, url.len)
@@ -38,7 +48,9 @@ fn format_url(current_domain string, url string) (string, string) {
 		return current_domain, n_url
 	}
 
+
 	splitted := n_url.split('://')
+
 	protocol := splitted[0]+'://'
 
 	mut separated := splitted[1].split('/')
@@ -47,6 +59,7 @@ fn format_url(current_domain string, url string) (string, string) {
 	separated.delete(0)
 
 	new_url := '/'+separated.join('/')
+
 	return protocol+domain, new_url
 }
 
@@ -59,10 +72,10 @@ fn get_next_domain(mut links Links, active string) string {
 }
 
 fn loop(configure Config, mut links Links, ac_domain string, index int) {
-
 	if configure.time_sleep > 0 { time.sleep(configure.time_sleep.nanoseconds() * time.second) }
 
 	if index >= links.links[ac_domain].len || configure.exclude_domains.contains(ac_domain) {
+
 		if !configure.exit_domain { return }
 		new_domain := get_next_domain(mut links, ac_domain)
 
@@ -75,11 +88,11 @@ fn loop(configure Config, mut links Links, ac_domain string, index int) {
 		)
 		return
 	}
-
 	url := ac_domain+links.links[ac_domain][index]
-	if configure.debug { print("$url\n") }
-	get_links(mut links, url, ac_domain)
 
+	if configure.debug { print("$url\n") }
+
+	get_links(mut links, url, ac_domain)
 	loop(configure, mut links, ac_domain, index + 1)
 }
 

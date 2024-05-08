@@ -2,7 +2,7 @@
   "url": "",
   "exit_domain": true,
   "exclude_domains": [],
-  "time_sleep": 0.2,
+  "time_sleep": 0.7,
   "output": "links.l",
   "debug": true
 }
