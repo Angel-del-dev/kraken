@@ -27,3 +27,8 @@ kraken.exe config.json
   "debug": true // Prints to console every link found
 }
 ````
+
+# TODO
+
+* Stats program
+  * Amount of the same url grouped by domain

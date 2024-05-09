@@ -4,7 +4,9 @@
   "exclude_domains": [],
   "time_sleep": 0.7,
   "output": "links.l",
-  "debug": true
+  "debug": true,
+  "save_every_level_change": false,
+  "amount_of_lines_before_save": 10
 }
 
 
