@@ -10,11 +10,6 @@
 ./kraken 'path_to_config.json'
 ````
 
-## Example
-````bash
-kraken.exe config.json
-````
-
 ## Config.json
 
 ````json
