@@ -19,7 +19,7 @@ kraken.exe config.json
 
 ````json
 {
-  "url": "",
+  "url": "", 
   "exit_domain": true, // If set to true, it allows kraken to move between other websites
   "exclude_domains": [],
   "time_sleep": 0.2, // Time between requests(Does not include the time of parsing HTML)
