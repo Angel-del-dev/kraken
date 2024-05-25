@@ -7,7 +7,7 @@
 ## Notation
 
 ````bash
-'exefile'.exe 'path_to_config.json'
+./kraken 'path_to_config.json'
 ````
 
 ## Example
