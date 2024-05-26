@@ -6,7 +6,9 @@
   "output": "links.l",
   "debug": true,
   "save_every_level_change": false,
-  "amount_of_lines_before_save": 10
+  "amount_of_lines_before_save": 10,
+
+  "run": "run.ks"
 }
 
 

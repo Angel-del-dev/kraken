@@ -25,4 +25,5 @@ pub:
 	debug bool
 	save_every_level_change bool
 	amount_of_lines_before_save int
+	run string
 }
